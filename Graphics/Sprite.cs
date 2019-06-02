@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Monogame_Experiments
+namespace FaeForest.Graphics
 {
     class Sprite
     {

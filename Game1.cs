@@ -1,8 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using FaeForest.Graphics;
 
-namespace Monogame_Experiments
+namespace FaeForest
 {
     /// <summary>
     /// This is the main type for your game.
@@ -17,8 +18,8 @@ namespace Monogame_Experiments
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
-            graphics.PreferredBackBufferWidth = 800;
-            graphics.PreferredBackBufferHeight = 600;
+            graphics.PreferredBackBufferWidth = 1024;
+            graphics.PreferredBackBufferHeight = 768;
             graphics.ApplyChanges();
             Content.RootDirectory = "Content";
         }
@@ -32,7 +33,7 @@ namespace Monogame_Experiments
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-
+            Camera.initialise(new Rectangle(0, 0, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight));
             base.Initialize();
         }
 
@@ -49,7 +50,7 @@ namespace Monogame_Experiments
             spriteSheets[0] = new SpriteSheet(new Vector2(12, 8), 32, "actor110", Content, false);
             spriteSheets[1] = new SpriteSheet(new Vector2(11, 3), 32, "TileSet", Content, false);
             //spriteSheets[1].spriteGrid.Remove("10");
-            world = new World(spriteSheets[1].spriteGrid, new Vector2(30, 30), spriteBatch);
+            world = new World(spriteSheets[1].spriteGrid, new Vector2(100, 100), spriteBatch);
         }
 
         /// <summary>
@@ -73,6 +74,7 @@ namespace Monogame_Experiments
                 Exit();
 
             world.update();
+            Camera.Update();
 
             // TODO: Add your update logic here
 
@@ -87,7 +89,8 @@ namespace Monogame_Experiments
         {
             GraphicsDevice.Clear(Color.Black);
 
-            spriteBatch.Begin();
+            spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, null, null, null, null, Camera.TransformMatrix());
+            //spriteBatch.Begin();
             world.Draw();
             spriteBatch.End();
             // TODO: Add your drawing code here

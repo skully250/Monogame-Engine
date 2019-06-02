@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Monogame_Experiments
+namespace FaeForest
 {
 #if WINDOWS || LINUX
     /// <summary>

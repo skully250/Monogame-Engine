@@ -6,8 +6,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using FaeForest.Graphics;
 
-namespace Monogame_Experiments
+namespace FaeForest
 {
     class World
     {
@@ -16,12 +17,15 @@ namespace Monogame_Experiments
         String[,] map;
         SpriteBatch spriteBatch;
 
+        public static Rectangle WorldRect;
+
         public World(Dictionary<String, Sprite> sprites, Vector2 size, SpriteBatch spriteBatch)
         {
             this.spriteBatch = spriteBatch;
             this.sprites = sprites;
             this.size = size;
             map = new string[(int)size.Y, (int)size.X];
+            WorldRect = new Rectangle(0, 0, (int)size.X * 32, (int)size.Y * 32);
             //TODO: make it automatic
             randomise();
         }
