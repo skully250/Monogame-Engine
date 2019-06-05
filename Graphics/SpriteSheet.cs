@@ -12,9 +12,7 @@ namespace FaeForest.Graphics
     class SpriteSheet
     {
         //Spritesheet variables
-        private int m_size;
-        private string m_path;
-
+        private int m_sizeX, m_sizeY;
 
         //Spritesheet textures
         private Texture2D texture;
@@ -23,37 +21,18 @@ namespace FaeForest.Graphics
 
         public Dictionary<string, Sprite> spriteGrid { get; set; }
 
-        private SpriteSheet(Vector2 sheetSize, int size, string path, ContentManager content)
+        public SpriteSheet(Vector2 sheetSize, Vector2 size, string path, ContentManager content, Vector2? offsets = null, string[] names = null)
         {
             spriteGridSize = sheetSize;
             spriteGrid = new Dictionary<string, Sprite>();
             texture = content.Load<Texture2D>(path);
-            m_size = size;
-            m_path = path;
+            m_sizeX = (int)size.X;
+            m_sizeY = (int)size.Y;
+            sheetNames = names == null ? null : names;
+            init(names == null ? false : true, offsets);
         }
 
-        public SpriteSheet(Vector2 sheetSize, int size, string path, ContentManager content, bool named) : this(sheetSize, size, path, content)
-        {
-            init(named);
-        }
-
-        public SpriteSheet(Vector2 sheetSize, int size, string path, ContentManager content, string[] names) : this(sheetSize, size, path, content, true)
-        {
-            sheetNames = names;
-        }
-
-        public SpriteSheet(Vector2 sheetSize, Vector2 offsets, int size, string path, ContentManager content) : this(sheetSize, size, path, content)
-        {
-            init(false, offsets);
-        }
-
-        public SpriteSheet(Vector2 sheetSize, Vector2 offsets, int size, string path, ContentManager content, string[] names) : this(sheetSize, size, path, content)
-        {
-            sheetNames = names;
-            init(true, offsets);
-        }
-
-        private void init(bool split, Vector2? offset = null)
+        private void init(bool split, Vector2? offset)
         {
             if (offset == null)
                 SplitSheet(split);
@@ -68,7 +47,7 @@ namespace FaeForest.Graphics
             {
                 for (int x = 0; x < spriteGridSize.X; x++)
                 {
-                    var position = new Rectangle(x * m_size, y * m_size, m_size, m_size);
+                    var position = new Rectangle(x * m_sizeX, y * m_sizeY, m_sizeX, m_sizeY);
                     if (!named)
                     {
                         spriteGrid.Add(count.ToString(), new Sprite(this, position));
@@ -86,13 +65,13 @@ namespace FaeForest.Graphics
         {
             if (offset == null)
                 return;
-            //OFfset rendering code
+            //Offset rendering code
             int count = 0;
             for (int y = 0 + (int)offset.Value.Y; y < spriteGridSize.Y; y++)
             {
                 for (int x = 0 + (int)offset.Value.X; x < spriteGridSize.X; x++)
                 {
-                    var position = new Rectangle(x * m_size, y * m_size, m_size, m_size);
+                    var position = new Rectangle(x * m_sizeX, y * m_sizeY, m_sizeX, m_sizeY);
                     if (named)
                         spriteGrid.Add(sheetNames[count], new Sprite(this, position));
                     else
@@ -100,6 +79,16 @@ namespace FaeForest.Graphics
                     count++;
                 }
             }
+        }
+
+        public Sprite[] FindAnimation(int startX, int startY, int frames)
+        {
+            Sprite[] sprites = new Sprite[frames];
+            for (int x = 0; x < frames; x++)
+            {
+                spriteGrid.TryGetValue((startX + x).ToString(), out sprites[x]);
+            }
+            return null;
         }
 
        public void Draw(int count, Vector2 position, SpriteBatch spriteBatch)

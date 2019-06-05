@@ -47,8 +47,8 @@ namespace FaeForest
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
-            spriteSheets[0] = new SpriteSheet(new Vector2(12, 8), 32, "actor110", Content, false);
-            spriteSheets[1] = new SpriteSheet(new Vector2(11, 3), 32, "TileSet", Content, false);
+            spriteSheets[0] = new SpriteSheet(new Vector2(12, 8), new Vector2(32, 32), "actor110", Content);
+            spriteSheets[1] = new SpriteSheet(new Vector2(11, 3), new Vector2(32, 32), "TileSet", Content);
             //spriteSheets[1].spriteGrid.Remove("10");
             world = new World(spriteSheets[1].spriteGrid, new Vector2(100, 100), spriteBatch);
         }
