@@ -17,7 +17,7 @@ namespace FaeForest.Graphics
 
         public Animation(SpriteSheet sheet, int size, int x, int y, int frames)
         {
-            size = m_size;
+            m_size = sheet.m_sizeX;
             //Spritesheet code to find and load animation
             sprites = sheet.FindAnimation(x, y, frames);
         }

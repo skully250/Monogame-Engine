@@ -42,7 +42,7 @@ namespace FaeForest
             UpdateMatrix = true;
         }
 
-        public static void Update()
+        public static void Update(Vector2 positionUp, bool update)
         {
             if (Keyboard.GetState().IsKeyDown(Keys.Left))
             {
@@ -64,6 +64,9 @@ namespace FaeForest
                 position += new Vector2(0, -cameraSpeed);
                 UpdateMatrix = true;
             }
+
+            positionUp = position;
+            UpdateMatrix = update;
 
             if (Keyboard.GetState().IsKeyDown(Keys.W))
                 ZoomBy(0.03f);

@@ -12,7 +12,8 @@ namespace FaeForest.Graphics
     class SpriteSheet
     {
         //Spritesheet variables
-        private int m_sizeX, m_sizeY;
+        public int m_sizeX { get; private set; }
+        public int m_sizeY { get; private set; }
 
         //Spritesheet textures
         private Texture2D texture;
@@ -88,7 +89,7 @@ namespace FaeForest.Graphics
             {
                 spriteGrid.TryGetValue((startX + x).ToString(), out sprites[x]);
             }
-            return null;
+            return sprites;
         }
 
        public void Draw(int count, Vector2 position, SpriteBatch spriteBatch)

@@ -14,6 +14,9 @@ namespace FaeForest
         SpriteBatch spriteBatch;
         SpriteSheet[] spriteSheets = new SpriteSheet[20];
         World world;
+        Animation anim1;
+
+        int animFrame = 0;
 
         public Game1()
         {
@@ -51,6 +54,7 @@ namespace FaeForest
             spriteSheets[1] = new SpriteSheet(new Vector2(11, 3), new Vector2(32, 32), "TileSet", Content);
             //spriteSheets[1].spriteGrid.Remove("10");
             world = new World(spriteSheets[1].spriteGrid, new Vector2(100, 100), spriteBatch);
+            anim1 = new Animation(spriteSheets[0], 32, 0, 0, 3);
         }
 
         /// <summary>
@@ -63,6 +67,8 @@ namespace FaeForest
             Content.Unload();
         }
 
+        float timer;
+
         /// <summary>
         /// Allows the game to run logic such as updating the world,
         /// checking for collisions, gathering input, and playing audio.
@@ -73,8 +79,19 @@ namespace FaeForest
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
+            timer += (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+            if (timer > 1f)
+            {
+                if (animFrame >= 2)
+                    animFrame = 0;
+                else
+                    animFrame++;
+                timer = 0;
+            }
+
             world.update();
-            Camera.Update();
+            Camera.Update(null, false);
 
             // TODO: Add your update logic here
 
@@ -92,6 +109,7 @@ namespace FaeForest
             spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, null, null, null, null, Camera.TransformMatrix());
             //spriteBatch.Begin();
             world.Draw();
+            anim1.Draw(spriteBatch, new Vector2(3, 3), animFrame);
             spriteBatch.End();
             // TODO: Add your drawing code here
 
