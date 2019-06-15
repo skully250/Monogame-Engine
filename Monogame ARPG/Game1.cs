@@ -1,9 +1,11 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using FaeForest;
 using FaeForest.Graphics;
+using FaeForest.Utility;
 
-namespace FaeForest
+namespace FaeGame
 {
     /// <summary>
     /// This is the main type for your game.
@@ -15,6 +17,7 @@ namespace FaeForest
         SpriteSheet[] spriteSheets = new SpriteSheet[20];
         World world;
         Animation anim1;
+        InputHandler m_input;
 
         int animFrame = 0;
 
@@ -37,6 +40,7 @@ namespace FaeForest
         {
             // TODO: Add your initialization logic here
             Camera.initialise(new Rectangle(0, 0, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight));
+            m_input = new InputHandler(this.IsActive);
             base.Initialize();
         }
 
@@ -91,7 +95,7 @@ namespace FaeForest
             }
 
             world.update();
-            Camera.Update(null, false);
+            Camera.Update(m_input, null, false);
 
             // TODO: Add your update logic here
 

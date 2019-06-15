@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace FaeForest
+namespace FaeGame
 {
 #if WINDOWS || LINUX
     /// <summary>

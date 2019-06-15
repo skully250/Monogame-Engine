@@ -1,10 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.Xna.Framework.Input;
+using FaeForest.Utility;
 
 namespace FaeForest
 {
@@ -42,35 +38,32 @@ namespace FaeForest
             UpdateMatrix = true;
         }
 
-        public static void Update(Vector2 positionUp, bool update)
+        public static void Update(InputHandler input, Vector2? positionUp, bool update)
         {
-            if (Keyboard.GetState().IsKeyDown(Keys.Left))
+            if (input.KeyDown(Keys.Left))
             {
                 position += new Vector2(-cameraSpeed, 0);
                 UpdateMatrix = true;
             }
-            if (Keyboard.GetState().IsKeyDown(Keys.Right))
+            if (input.KeyDown(Keys.Right))
             {
                 position += new Vector2(cameraSpeed, 0);
                 UpdateMatrix = true;
             }
-            if (Keyboard.GetState().IsKeyDown(Keys.Down))
+            if (input.KeyDown(Keys.Down))
             {
                 position += new Vector2(0, cameraSpeed);
                 UpdateMatrix = true;
             }
-            if (Keyboard.GetState().IsKeyDown(Keys.Up))
+            if (input.KeyDown(Keys.Up))
             {
                 position += new Vector2(0, -cameraSpeed);
                 UpdateMatrix = true;
             }
 
-            positionUp = position;
-            UpdateMatrix = update;
-
-            if (Keyboard.GetState().IsKeyDown(Keys.W))
+            if (input.KeyDown(Keys.W))
                 ZoomBy(0.03f);
-            if (Keyboard.GetState().IsKeyDown(Keys.S))
+            if (input.KeyDown(Keys.S))
                 ZoomBy(-0.03f);
 
             if (position.X < viewport.Left / zoom)
@@ -93,7 +86,6 @@ namespace FaeForest
                     * Matrix.CreateTranslation(new Vector3(origin, 0));
                 UpdateMatrix = false;
             }
-            //Console.WriteLine(World.WorldRect);
             return transform;
         }
     }
