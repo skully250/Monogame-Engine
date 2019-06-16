@@ -23,5 +23,10 @@ namespace FaeForest.Graphics
         {
             m_sheet.Draw(this, position, spriteBatch);
         }
+
+        public void ScaledDraw(Vector2 position, SpriteBatch spriteBatch, float scale)
+        {
+            m_sheet.ScaledDraw(this, position, spriteBatch, scale);
+        }
     }
 }

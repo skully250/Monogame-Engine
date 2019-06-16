@@ -117,5 +117,11 @@ namespace FaeForest.Graphics
         {
             spriteBatch.Draw(texture, position, sprite.m_sheetPos, Color.White);
         }
+
+        public void ScaledDraw(Sprite sprite, Vector2 position, SpriteBatch spritebatch, float scale)
+        {
+            //spritebatch.Draw(texture, position, sprite.m_sheetPos, null, null, 0, scale, Color.White);
+            spritebatch.Draw(texture, position, sprite.m_sheetPos, Color.White, 0f, Vector2.Zero, scale, SpriteEffects.None, 0);
+        }
     }
 }

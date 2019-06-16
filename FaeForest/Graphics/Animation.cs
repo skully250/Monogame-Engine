@@ -28,5 +28,10 @@ namespace FaeForest.Graphics
             var size = new Rectangle((int)m_position.X, (int)m_position.Y, m_size, m_size);
             sprites[frame].Draw(position, batch);
         }
+
+        public void ScaledDraw(SpriteBatch batch, Vector2 position, float scale, int frame)
+        {
+            sprites[frame].ScaledDraw(position, batch, scale);
+        }
     }
 }
