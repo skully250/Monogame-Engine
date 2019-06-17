@@ -1,11 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FaeForest.Graphics
 {
@@ -50,13 +46,9 @@ namespace FaeForest.Graphics
                 {
                     var position = new Rectangle(x * m_sizeX, y * m_sizeY, m_sizeX, m_sizeY);
                     if (!named)
-                    {
                         spriteGrid.Add(count.ToString(), new Sprite(this, position));
-                    }
                     else
-                    {
                         spriteGrid.Add(sheetNames[count], new Sprite(this, position));
-                    }
                     count++;
                 }
             }
@@ -86,9 +78,7 @@ namespace FaeForest.Graphics
         {
             Sprite[] sprites = new Sprite[frames];
             for (int x = 0; x < frames; x++)
-            {
                 spriteGrid.TryGetValue((startX + x).ToString(), out sprites[x]);
-            }
             return sprites;
         }
 
