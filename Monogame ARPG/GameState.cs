@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace FaeGame
 {
-    class GameState : State
+    class GameState : ScreenState
     {
         private InputHandler m_input;
         SpriteSheet[] spriteSheets = new SpriteSheet[20];

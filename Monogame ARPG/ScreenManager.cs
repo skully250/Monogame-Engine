@@ -9,7 +9,7 @@ namespace FaeGame
     class ScreenManager
     {
         public StateEngine stateEngine;
-        public State[] states = new State[5];
+        public ScreenState[] states = new ScreenState[5];
         private static InputHandler m_input;
 
         public ScreenManager(bool isActive, GraphicsDeviceManager graphics)

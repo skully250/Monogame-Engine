@@ -8,17 +8,17 @@ namespace FaeForest.States
 {
     class StateEngine
     {
-        public static Dictionary<string, State> states;
+        public static Dictionary<string, ScreenState> states;
         private String CurrentState;
 
         public StateEngine()
         {
-            states = new Dictionary<String, State>();
+            states = new Dictionary<String, ScreenState>();
         }
 
         public void LoadContent(SpriteBatch spriteBatch, ContentManager Content)
         {
-            foreach (State states in states.Values)
+            foreach (ScreenState states in states.Values)
             {
                 states.LoadContent(spriteBatch, Content);
             }
@@ -29,14 +29,14 @@ namespace FaeForest.States
             CurrentState = name;
         }
 
-        public void AddState(String name, State state)
+        public void AddState(String name, ScreenState state)
         {
             states.Add(name, state);
         }
 
-        public State getCurrentState()
+        public ScreenState getCurrentState()
         {
-            State current;
+            ScreenState current;
             states.TryGetValue(CurrentState, out current);
             return current;
         }
