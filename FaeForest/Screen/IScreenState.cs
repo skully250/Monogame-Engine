@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace FaeForest.States
 {
-    interface ScreenState
+    interface IScreenState
     {
         void LoadContent(SpriteBatch spriteBatch, ContentManager Content);
 

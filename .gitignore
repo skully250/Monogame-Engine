@@ -341,9 +341,7 @@ healthchecksdb
 *.sln
 /Content/107826.png
 /Content/44036.png
-/Monogame ARPG/Content
-/Monogame ARPG/Properties
-/Monogame ARPG/app.manifest
-/Monogame ARPG/Icon.ico
+/Monogame ARPG/
 /FaeForest/MonoGame.Shared1.projitems
 /FaeForest/Content
+/Thingy
