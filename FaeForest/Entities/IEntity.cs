@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace FaeForest.Entity
+namespace FaeForest.Entities
 {
     interface IEntity
     {

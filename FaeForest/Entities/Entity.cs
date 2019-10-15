@@ -2,19 +2,30 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace FaeForest.Entity
+namespace FaeForest.Entities
 {
     class Entity : IEntity
     {
+        //Graphical
         private Sprite m_sprite;
-        private Vector2 m_position;
-        private EntityStateEngine states;
+        private Animation m_animation;
 
-        public Entity(Vector2 position, Sprite sprite)
+        //Mathematical
+        private Vector2 m_position;
+        private EntityStateManager states;
+
+        public Entity(Vector2 position, Sprite sprite, int layer)
         {
             m_sprite = sprite;
             m_position = position;
-            states = new EntityStateEngine();
+            states = new EntityStateManager();
+        }
+
+        public Entity(Vector2 position, Animation animation, int layer)
+        {
+            m_animation = animation;
+            m_position = position;
+            states = new EntityStateManager();
         }
 
         public void render(SpriteBatch spriteBatch, GameTime gameTime)

@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace FaeForest.Entity
+namespace FaeForest.Entities
 {
-    class EntityStateEngine
+    class EntityStateManager
     {
         private Dictionary<String, bool> states;
 
-        public EntityStateEngine()
+        public EntityStateManager()
         {
             states = new Dictionary<String, bool>();
         }
